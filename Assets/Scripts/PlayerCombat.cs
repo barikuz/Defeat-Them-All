@@ -5,7 +5,7 @@ public class PlayerCombat : MonoBehaviour
 {
     [Header("Attack Settings")]
     [SerializeField] private Transform attackPoint;
-    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private float attackRange = 1f;
     [SerializeField] private LayerMask enemyLayers;
 
     // Called by the Player Input component when the Attack action is pressed.
