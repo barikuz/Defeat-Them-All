@@ -32,6 +32,12 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit enemy: " + enemy.name);
+
+            // Notify the GameManager that an enemy has been defeated
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.EnemyDefeated();
+            }
             
             // For now, destroy the enemy instantly on hit
             Destroy(enemy.gameObject);
