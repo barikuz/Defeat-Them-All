@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
 
     private Animator animator;
+
+    private readonly HashSet<Collider2D> groundColliders = new();
 
     void Start()
     {
@@ -55,25 +58,47 @@ public class PlayerMovement : MonoBehaviour
         {
             // Prevent another jump until the player lands again.
             isGrounded = false;
+
+            animator.SetBool("Grounded", false);
+            animator.SetTrigger("Jump");
+
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Mark the player as grounded when it touches the Ground layer.
-        if (IsGroundLayer(collision.gameObject))
+        if (!IsGroundLayer(collision.gameObject))
         {
-            isGrounded = true;
+            return;
+        }
+         
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            // Check if the contact normal indicates that the player is standing on top of the ground.
+            if (contact.normal.y > 0.5f)
+            {
+                groundColliders.Add(collision.collider);
+                isGrounded = true;
+                animator.SetBool("Grounded", true);
+                return;
+            }
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        // The player is airborne after leaving the Ground layer.
-        if (IsGroundLayer(collision.gameObject))
+        if (!IsGroundLayer(collision.gameObject))
+        {
+            return;
+        }
+
+        groundColliders.Remove(collision.collider);
+
+        if (groundColliders.Count == 0)
         {
             isGrounded = false;
+            animator.SetBool("Grounded", false);
         }
     }
 

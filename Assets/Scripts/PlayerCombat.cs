@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -8,16 +10,26 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private LayerMask enemyLayers;
 
+    private Animator animator;
+
+    [SerializeField] private float deathDelay = 1.5f;
+
+    private readonly HashSet<GameObject> dyingEnemies = new();
+    void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+
     // Called by the Player Input component when the Attack action is pressed.
     public void OnAttack(InputValue value)
     {
         if (value.isPressed)
         {
-            Attack();
+            animator.SetTrigger("Attack");
         }
     }
 
-    void Attack()
+    public void Attack()
     {
         if (attackPoint == null)
         {
@@ -33,15 +45,33 @@ public class PlayerCombat : MonoBehaviour
         {
             Debug.Log("Hit enemy: " + enemy.name);
 
-            // Notify the GameManager that an enemy has been defeated
-            if (GameManager.Instance != null)
+            if (!dyingEnemies.Add(enemy.gameObject))
             {
-                GameManager.Instance.EnemyDefeated();
+                continue;
             }
-            
-            // For now, destroy the enemy instantly on hit
-            Destroy(enemy.gameObject);
+
+            StartCoroutine(DefeatEnemy(enemy.gameObject));
         }
+    }
+
+    private IEnumerator DefeatEnemy(GameObject enemy)
+    {
+        Animator enemyAnimator = enemy.GetComponentInChildren<Animator>();
+
+        if (enemyAnimator != null)
+        {
+            enemyAnimator.SetTrigger("Death");
+        }
+
+
+        yield return new WaitForSeconds(deathDelay);
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.EnemyDefeated();
+        }
+
+        Destroy(enemy);
     }
 
     // Draw the attack range in the editor for visualization
