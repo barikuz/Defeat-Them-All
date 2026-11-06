@@ -12,16 +12,34 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private bool isGrounded;
 
+    private Animator animator;
+
     void Start()
     {
         // Get the Rigidbody2D attached to the player.
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
         // Apply horizontal movement while preserving the current vertical velocity.
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+        if (Mathf.Abs(moveInput.x) > Mathf.Epsilon)
+        {
+            animator.SetInteger("AnimState", 2);
+        }
+        else
+        {
+            animator.SetInteger("AnimState", 0);
+        }
+
+        if (moveInput.x != 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = -Mathf.Abs(scale.x) * Mathf.Sign(moveInput.x);
+            transform.localScale = scale;
+        }
     }
 
     public void OnMove(InputValue value)

@@ -29,7 +29,7 @@ public class EnemyCombat : MonoBehaviour
 
         foreach (Collider2D player in hitPlayers)
         {
-            PlayerHealth health = player.GetComponent<PlayerHealth>();
+            PlayerHealth health = player.GetComponentInParent<PlayerHealth>();
             if (health != null)
             {
                 hitPlayer = true;
