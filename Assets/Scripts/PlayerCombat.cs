@@ -56,13 +56,27 @@ public class PlayerCombat : MonoBehaviour
 
     private IEnumerator DefeatEnemy(GameObject enemy)
     {
+        EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
+        EnemyCombat enemyCombat = enemy.GetComponent<EnemyCombat>();
+        Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
         Animator enemyAnimator = enemy.GetComponentInChildren<Animator>();
 
+        if (enemyAI != null)
+        {
+            enemyAI.enabled = false;
+        }
+        if (enemyCombat != null)
+        {
+            enemyCombat.enabled = false;
+        }
+        if (enemyRb != null)
+        {
+            enemyRb.linearVelocity = Vector2.zero;
+        }
         if (enemyAnimator != null)
         {
             enemyAnimator.SetTrigger("Death");
         }
-
 
         yield return new WaitForSeconds(deathDelay);
 
