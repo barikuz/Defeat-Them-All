@@ -11,6 +11,13 @@ public class EnemyCombat : MonoBehaviour
 
     private float lastAttackTime;
 
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+
     void Update()
     {
         if (attackPoint == null) return;
@@ -23,26 +30,51 @@ public class EnemyCombat : MonoBehaviour
 
     bool Attack()
     {
-        // Detect player in range using a circle overlap
-        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
+        Collider2D[] hitPlayers = GetPlayersInAttackRange();
+
         bool hitPlayer = false;
 
         foreach (Collider2D player in hitPlayers)
         {
-            PlayerHealth health = player.GetComponentInParent<PlayerHealth>();
-            if (health != null)
+            if (player.GetComponentInParent<PlayerHealth>() != null)
             {
                 hitPlayer = true;
-                health.TakeDamage(attackDamage);
+                break;
             }
         }
 
         if (hitPlayer)
         {
+            animator.SetTrigger("Attack");
             Debug.Log("Enemy attacks!");
         }
 
         return hitPlayer;
+    }
+
+    public void DealAttackDamage()
+    {
+        // Detect player in range using a circle overlap
+        Collider2D[] hitPlayers = GetPlayersInAttackRange();
+
+        foreach (Collider2D player in hitPlayers)
+        {
+            PlayerHealth health = player.GetComponentInParent<PlayerHealth>();
+
+            if (health != null)
+            {
+                health.TakeDamage(attackDamage);
+            }
+        }
+    }
+
+    private Collider2D[] GetPlayersInAttackRange()
+    {
+        return Physics2D.OverlapCircleAll(
+            attackPoint.position,
+            attackRange,
+            playerLayer
+        );
     }
 
     // Visualize the enemy attack range in the editor

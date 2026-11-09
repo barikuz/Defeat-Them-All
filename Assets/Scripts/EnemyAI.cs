@@ -8,10 +8,12 @@ public class EnemyAI : MonoBehaviour
 
     private Transform playerTransform;
     private Rigidbody2D rb;
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
 
         // Find the player in the scene using the "Player" tag
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -39,6 +41,7 @@ public class EnemyAI : MonoBehaviour
         {
             // Stop moving when the player is out of range
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            animator.SetInteger("AnimState", 0);
         }
     }
 
@@ -49,5 +52,10 @@ public class EnemyAI : MonoBehaviour
 
         // Move horizontally towards the player
         rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
+        animator.SetInteger("AnimState", 2);
+
+        Vector3 scale = transform.localScale;
+        scale.x = -Mathf.Abs(scale.x) * direction;
+        transform.localScale = scale;
     }
 }
