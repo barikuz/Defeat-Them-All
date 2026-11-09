@@ -7810,9 +7810,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2141680279}
   - component: {fileID: 2141680280}
-  - component: {fileID: 2141680281}
   - component: {fileID: 2141680282}
   - component: {fileID: 2141680283}
+  - component: {fileID: 2141680284}
   m_Layer: 8
   m_Name: PlayerBandit
   m_TagString: Untagged
@@ -7894,90 +7894,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!60 &2141680281
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2141680278}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.5, y: 1.5}
-    newSize: {x: 1.5, y: 1.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.26582986, y: 0.94325495}
-      - {x: 0.23567754, y: 0.9731077}
-      - {x: 0.20301753, y: 0.9912847}
-      - {x: 0.19910413, y: 1.0322915}
-      - {x: 0.15661126, y: 1.0661489}
-      - {x: 0.12996322, y: 1.1864618}
-      - {x: 0.08453352, y: 1.2096739}
-      - {x: 0.066741474, y: 1.2573096}
-      - {x: -0.08098619, y: 1.2553142}
-      - {x: -0.10746432, y: 1.2175683}
-      - {x: -0.13849084, y: 1.2079344}
-      - {x: -0.15259138, y: 1.0444771}
-      - {x: -0.23576689, y: 0.9602251}
-      - {x: -0.24219671, y: 0.8184335}
-      - {x: -0.2755413, y: 0.73864174}
-      - {x: -0.27914444, y: 0.42065635}
-      - {x: -0.28685108, y: 0.26963964}
-      - {x: -0.24300113, y: 0.1700515}
-      - {x: -0.29951826, y: 0.13044325}
-      - {x: -0.3342352, y: 0.05126929}
-      - {x: -0.09079997, y: 0.05126922}
-      - {x: -0.03893487, y: 0.091815636}
-      - {x: 0.11331207, y: 0.24881688}
-      - {x: 0.1459263, y: 0.23291317}
-      - {x: 0.14261895, y: 0.14743012}
-      - {x: 0.10025389, y: 0.11864034}
-      - {x: 0.05970461, y: 0.046306774}
-      - {x: 0.26419163, y: 0.042624947}
-      - {x: 0.30395842, y: 0.09091663}
-      - {x: 0.27182704, y: 0.3219017}
-      - {x: 0.26913577, y: 0.410875}
-      - {x: 0.3487075, y: 0.4271008}
-      - {x: 0.3559869, y: 0.5160886}
-      - {x: 0.43323544, y: 0.636032}
-      - {x: 0.5284004, y: 0.7358751}
-      - {x: 0.4442857, y: 0.8133569}
-      - {x: 0.3692665, y: 0.7130166}
-  m_UseDelaunayMesh: 1
 --- !u!95 &2141680282
 Animator:
   serializedVersion: 7
@@ -8012,6 +7928,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856c1ae2323a0bf4f821f34f9f453e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!70 &2141680284
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141680278}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.030082941, y: 0.6576627}
+  m_Size: {x: 0.61044645, y: 1.2098385}
+  m_Direction: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

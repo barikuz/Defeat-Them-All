@@ -26,8 +26,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Apply horizontal movement while preserving the current vertical velocity.
-        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
         if (Mathf.Abs(moveInput.x) > Mathf.Epsilon)
         {
             animator.SetInteger("AnimState", 2);
@@ -43,6 +41,12 @@ public class PlayerMovement : MonoBehaviour
             scale.x = -Mathf.Abs(scale.x) * Mathf.Sign(moveInput.x);
             transform.localScale = scale;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        // Apply physics movement in the same fixed-step loop that resolves collisions.
+        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
     }
 
     public void OnMove(InputValue value)
@@ -68,7 +72,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        UpdateGroundedState(collision);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        UpdateGroundedState(collision);
+    }
+
+    private void UpdateGroundedState(Collision2D collision)
+    {
         if (!IsGroundLayer(collision.gameObject))
+        {
+            return;
+        }
+
+        // Ignore lingering contacts while the player is moving upward after a jump.
+        if (rb.linearVelocity.y > 0.01f)
         {
             return;
         }
