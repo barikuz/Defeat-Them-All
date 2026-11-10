@@ -48,5 +48,8 @@ TagManager:
   - name: Persons
     uniqueID: 3657622349
     locked: 0
+  - name: Door
+    uniqueID: 3630625771
+    locked: 0
   m_RenderingLayers:
   - Default
