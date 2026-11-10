@@ -46,23 +46,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("All enemies cleared! The door is now open.");
 
-        if (exitDoor != null)
-        {
-            // Change the tilemap color to indicate that the door is open.
-            Tilemap doorTilemap = exitDoor.GetComponent<Tilemap>();
-            if (doorTilemap != null)
-            {
-                doorTilemap.color = Color.white;
+        Animator animator = exitDoor.GetComponent<Animator>();
 
-                foreach (Vector3Int position in doorTilemap.cellBounds.allPositionsWithin)
-                {
-                    if (doorTilemap.HasTile(position))
-                    {
-                        doorTilemap.RemoveTileFlags(position, TileFlags.LockColor);
-                        doorTilemap.SetColor(position, Color.cyan);
-                    }
-                }
-            }
+        if (animator != null)
+        {
+            animator.SetTrigger("Open");
         }
     }
 }
