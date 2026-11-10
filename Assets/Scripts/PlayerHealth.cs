@@ -11,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
     private bool isDead;
 
     private Animator animator;
+
+    [SerializeField] private Animator[] heartAnimators;
     void Start()
     {
         currentHealth = maxHealth;
@@ -24,6 +26,13 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
         currentHealth -= damage;
+
+        int heartIndex = currentHealth;
+
+        if (heartIndex >= 0 && heartIndex < heartAnimators.Length)
+        {
+            heartAnimators[heartIndex].SetTrigger("HeartLost");
+        }
 
         Debug.Log("Player took damage! Current health: " + currentHealth);
 

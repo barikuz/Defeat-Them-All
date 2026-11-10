@@ -45,11 +45,14 @@ TagManager:
   - name: Environments
     uniqueID: 162602843
     locked: 0
+  - name: Door
+    uniqueID: 3630625771
+    locked: 0
   - name: Persons
     uniqueID: 3657622349
     locked: 0
-  - name: Door
-    uniqueID: 3630625771
+  - name: Health
+    uniqueID: 2670291923
     locked: 0
   m_RenderingLayers:
   - Default
