@@ -10,6 +10,8 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
+    [SerializeField] private bool startsFacingRight = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -55,7 +57,8 @@ public class EnemyAI : MonoBehaviour
         animator.SetInteger("AnimState", 2);
 
         Vector3 scale = transform.localScale;
-        scale.x = -Mathf.Abs(scale.x) * direction;
+        float facingDirection = startsFacingRight ? direction : -direction;
+        scale.x = Mathf.Abs(scale.x) * facingDirection; 
         transform.localScale = scale;
     }
 }
