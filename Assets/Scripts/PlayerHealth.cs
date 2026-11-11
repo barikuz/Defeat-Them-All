@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
@@ -57,6 +58,31 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator DeathSequence()
     {
         isDead = true;
+        PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+        PlayerCombat playerCombat = GetComponent<PlayerCombat>();
+        PlayerInput playerInput = GetComponent<PlayerInput>();
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = false;
+        }
+
+        if (playerCombat != null)
+        {
+            playerCombat.enabled = false;
+        }
+
+        if (playerInput != null)
+        {
+            playerInput.enabled = false;
+        }
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+        
         animator.SetTrigger("Death");
 
         yield return new WaitForSeconds(deathDelay);
