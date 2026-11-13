@@ -9,15 +9,23 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 3;
     private int currentHealth;
     [SerializeField] private float deathDelay = 1.5f;
+    
     private bool isDead;
+    [SerializeField] private GameObject loseCanvas;
 
     private Animator animator;
-
     [SerializeField] private Animator[] heartAnimators;
+    
+
     void Start()
     {
         currentHealth = maxHealth;
         animator = GetComponentInChildren<Animator>();
+
+        if (loseCanvas != null)
+        {
+            loseCanvas.SetActive(false);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -39,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            StartCoroutine(DeathSequence());
+            DeathSequence();
         }
         else
         {
@@ -48,14 +56,14 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    void Die()
+    public void PlayAgain()
     {
         Debug.Log("Player died! Restarting level...");
         // Reload the current scene on death
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
-    private IEnumerator DeathSequence()
+    private void DeathSequence()
     {
         isDead = true;
         PlayerMovement playerMovement = GetComponent<PlayerMovement>();
@@ -85,8 +93,10 @@ public class PlayerHealth : MonoBehaviour
         
         animator.SetTrigger("Death");
 
-        yield return new WaitForSeconds(deathDelay);
+        if (loseCanvas != null)
+        {
+            loseCanvas.SetActive(true);
+        }
 
-        Die();
     }
 }

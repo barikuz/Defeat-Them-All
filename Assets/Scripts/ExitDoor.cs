@@ -6,7 +6,9 @@ public class ExitDoor : MonoBehaviour
 {
     [Header("Scene Settings")]
     [SerializeField] private string nextSceneName = "Level2"; // Name of the next level scene
-
+    [SerializeField] private bool isFinalLevel;
+    [SerializeField] private GameObject youWinCanvas;
+    
     private bool isLoading;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -48,7 +50,22 @@ public class ExitDoor : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
+        if (isFinalLevel)
+        {
+            if (youWinCanvas != null)
+            {
+                youWinCanvas.SetActive(true);
+            }
+
+            yield break;
+        }
+
         Debug.Log("Level completed! Loading next level...");
         SceneManager.LoadScene(nextSceneName);
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene(0);
     }
 }
