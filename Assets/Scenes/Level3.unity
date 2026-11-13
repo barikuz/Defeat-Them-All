@@ -7798,6 +7798,7 @@ MonoBehaviour:
   nextSceneName: Level3
   isFinalLevel: 1
   youWinCanvas: {fileID: 1597850585}
+  nextLevelToUnlock: 3
 --- !u!114 &1545681348 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6907583141747287349, guid: e1cf1067d051bbc419743ccac1bc7d03, type: 3}

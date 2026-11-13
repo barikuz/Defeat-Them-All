@@ -7311,6 +7311,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExitDoor
   nextSceneName: Level3
+  isFinalLevel: 0
+  youWinCanvas: {fileID: 0}
+  nextLevelToUnlock: 3
 --- !u!1001 &1507826023
 PrefabInstance:
   m_ObjectHideFlags: 0

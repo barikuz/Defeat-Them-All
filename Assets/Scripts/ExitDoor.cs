@@ -11,6 +11,8 @@ public class ExitDoor : MonoBehaviour
     
     private bool isLoading;
 
+    [SerializeField] private int nextLevelToUnlock;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         TryStartLevelTransition(collision);
@@ -46,6 +48,19 @@ public class ExitDoor : MonoBehaviour
     
     private IEnumerator LoadNextLevelAfterDelay(float delay)
     {
+        if (nextLevelToUnlock > 0)
+        {
+             int currentHighestLevel =
+            PlayerPrefs.GetInt("HighestUnlockedLevel", 1);
+
+            if (nextLevelToUnlock > currentHighestLevel)
+            {
+                PlayerPrefs.SetInt("HighestUnlockedLevel", nextLevelToUnlock);
+                PlayerPrefs.Save();
+            }
+        
+        }
+       
         isLoading = true;
 
         yield return new WaitForSeconds(delay);
@@ -66,6 +81,6 @@ public class ExitDoor : MonoBehaviour
 
     public void PlayAgain()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
