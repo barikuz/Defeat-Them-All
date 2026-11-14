@@ -19,6 +19,13 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerAudio playerAudio;
 
+    private Vector2 mobileMoveInput;
+
+    private Vector2 activeMoveInput =>
+    Mathf.Abs(mobileMoveInput.x) > 0.01f
+        ? mobileMoveInput
+        : moveInput;
+
     void Start()
     {
         // Get the Rigidbody2D attached to the player.
@@ -29,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (Mathf.Abs(moveInput.x) > Mathf.Epsilon)
+        if (Mathf.Abs(activeMoveInput.x) > Mathf.Epsilon)
         {
             animator.SetInteger("AnimState", 2);
         }
@@ -38,18 +45,26 @@ public class PlayerMovement : MonoBehaviour
             animator.SetInteger("AnimState", 0);
         }
 
-        if (moveInput.x != 0)
+        if (activeMoveInput.x != 0)
         {
             Vector3 scale = transform.localScale;
-            scale.x = Mathf.Abs(scale.x) * Mathf.Sign(moveInput.x);
+            scale.x = Mathf.Abs(scale.x) * Mathf.Sign(activeMoveInput.x);
             transform.localScale = scale;
         }
     }
 
+    public void SetMobileMoveInput(Vector2 input)
+    {
+        mobileMoveInput = input;
+    }
+
     private void FixedUpdate()
     {
-        // Apply physics movement in the same fixed-step loop that resolves collisions.
-        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+        float horizontalInput = Mathf.Abs(mobileMoveInput.x) > 0.01f
+        ? mobileMoveInput.x
+        : moveInput.x;
+
+        rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
     }
 
     public void OnMove(InputValue value)
