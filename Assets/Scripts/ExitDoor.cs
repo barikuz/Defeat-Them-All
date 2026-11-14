@@ -81,6 +81,7 @@ public class ExitDoor : MonoBehaviour
 
     public void PlayAgain()
     {
+        PlayerHealth.ResetHealth();
         SceneManager.LoadScene(1);
     }
 }

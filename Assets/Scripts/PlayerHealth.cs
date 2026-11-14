@@ -18,10 +18,27 @@ public class PlayerHealth : MonoBehaviour
 
     private PlayerAudio playerAudio;
     
+    private static int savedHealth = -1;
 
     void Start()
     {
-        currentHealth = maxHealth;
+        if (savedHealth == -1)
+        {
+            savedHealth = maxHealth;
+        }
+
+        currentHealth = savedHealth;
+
+        for (int i = currentHealth; i < maxHealth; i++)
+        {
+            if (i < heartAnimators.Length)
+            {
+                heartAnimators[i].SetTrigger("HeartLost");
+            }
+        }
+
+        Debug.Log("Level başladı. Can: " + currentHealth);
+
         animator = GetComponentInChildren<Animator>();
         playerAudio = GetComponentInChildren<PlayerAudio>();
 
@@ -41,6 +58,8 @@ public class PlayerHealth : MonoBehaviour
         playerAudio.PlayHit();
 
         currentHealth -= damage;
+
+        savedHealth = currentHealth;
 
         int heartIndex = currentHealth;
 
@@ -64,6 +83,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void PlayAgain()
     {
+        ResetHealth();
+        
         Debug.Log("Player died! Restarting level...");
         // Reload the current scene on death
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -104,5 +125,10 @@ public class PlayerHealth : MonoBehaviour
             loseCanvas.SetActive(true);
         }
 
+    }
+
+    public static void ResetHealth()
+    {
+        savedHealth = -1;
     }
 }
