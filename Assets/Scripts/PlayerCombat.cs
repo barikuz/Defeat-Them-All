@@ -78,6 +78,13 @@ public class PlayerCombat : MonoBehaviour
             enemyAnimator.SetTrigger("Death");
         }
 
+        EnemyAudio enemyAudio = enemy.GetComponentInChildren<EnemyAudio>();
+
+        if (enemyAudio != null)
+        {
+            enemyAudio.PlayDeath();
+        }
+
         yield return new WaitForSeconds(deathDelay);
 
         if (GameManager.Instance != null)

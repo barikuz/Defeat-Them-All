@@ -17,11 +17,14 @@ public class PlayerMovement : MonoBehaviour
 
     private readonly HashSet<Collider2D> groundColliders = new();
 
+    private PlayerAudio playerAudio;
+
     void Start()
     {
         // Get the Rigidbody2D attached to the player.
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
+        playerAudio = GetComponentInChildren<PlayerAudio>();
     }
 
     void Update()
@@ -62,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
         {
             // Prevent another jump until the player lands again.
             isGrounded = false;
+
+            playerAudio.PlayJump();
 
             animator.SetBool("Grounded", false);
             animator.SetTrigger("Jump");

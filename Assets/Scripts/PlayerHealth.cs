@@ -15,12 +15,15 @@ public class PlayerHealth : MonoBehaviour
 
     private Animator animator;
     [SerializeField] private Animator[] heartAnimators;
+
+    private PlayerAudio playerAudio;
     
 
     void Start()
     {
         currentHealth = maxHealth;
         animator = GetComponentInChildren<Animator>();
+        playerAudio = GetComponentInChildren<PlayerAudio>();
 
         if (loseCanvas != null)
         {
@@ -34,6 +37,9 @@ public class PlayerHealth : MonoBehaviour
         {
             return;
         }
+
+        playerAudio.PlayHit();
+
         currentHealth -= damage;
 
         int heartIndex = currentHealth;
