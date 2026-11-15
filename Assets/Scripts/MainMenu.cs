@@ -11,6 +11,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button level2Button;
     [SerializeField] private Button level3Button;
 
+    private void Awake() {
+        // Set target frame rate to 60 for smooth mobile performance
+        Application.targetFrameRate = 60;
+    }
     private void Start()
     {
         mainMenuCanvas.SetActive(true);
