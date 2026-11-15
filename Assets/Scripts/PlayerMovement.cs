@@ -19,11 +19,15 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerAudio playerAudio;
 
-    private Vector2 mobileMoveInput;
+    public Vector2 MobileMoveInput
+    {
+        private get;
+        set;
+    }
 
     private Vector2 activeMoveInput =>
-    Mathf.Abs(mobileMoveInput.x) > 0.01f
-        ? mobileMoveInput
+        Mathf.Abs(MobileMoveInput.x) > 0.01f
+        ? MobileMoveInput
         : moveInput;
 
     void Start()
@@ -53,16 +57,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void SetMobileMoveInput(Vector2 input)
-    {
-        mobileMoveInput = input;
-    }
-
     private void FixedUpdate()
     {
-        float horizontalInput = Mathf.Abs(mobileMoveInput.x) > 0.01f
-        ? mobileMoveInput.x
-        : moveInput.x;
+        float horizontalInput = Mathf.Abs(MobileMoveInput.x) > 0.01f
+            ? MobileMoveInput.x
+            : moveInput.x;
 
         rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
     }
@@ -75,19 +74,27 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        // Allow jumping only when the jump button is pressed and the player is grounded.
-        if (value.isPressed && isGrounded)
+        if (value.isPressed)
         {
-            // Prevent another jump until the player lands again.
-            isGrounded = false;
-
-            playerAudio.PlayJump();
-
-            animator.SetBool("Grounded", false);
-            animator.SetTrigger("Jump");
-
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            TryJump();
         }
+    }
+
+    public void TryJump()
+    {
+        if (!isGrounded)
+        {
+            return;
+        }
+
+        isGrounded = false;
+
+        playerAudio.PlayJump();
+
+        animator.SetBool("Grounded", false);
+        animator.SetTrigger("Jump");
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

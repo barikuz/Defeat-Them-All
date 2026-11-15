@@ -1,76 +1,148 @@
 fileFormatVersion: 2
-guid: e85cfb3ec2786144e9a5b6d9a26b9b5e
+guid: c743f4b2000ef6c48a2d9acd5c1877b4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8449944869432733764
-    second: Attack Button_0
+      213: 7460046300004610927
+    second: Jump_0
   - first:
-      213: -5934598678658366500
-    second: Attack Button_1
+      213: 7034338576483803127
+    second: Jump_1
   - first:
-      213: 6827010513858653783
-    second: Attack Button_2
+      213: 6054277451648750542
+    second: Jump_2
   - first:
-      213: 2773401560064084538
-    second: Attack Button_3
+      213: 6937500446539429301
+    second: Jump_3
   - first:
-      213: -7821689927299375192
-    second: Attack Button_4
+      213: 3580086529375993838
+    second: Jump_4
   - first:
-      213: 1784152599538776797
-    second: Attack Button_5
+      213: 3630178267427638470
+    second: Jump_5
   - first:
-      213: 2905800286015181399
-    second: Attack Button_6
+      213: 3900142949445631465
+    second: Jump_6
   - first:
-      213: -8377882313409677745
-    second: Attack Button_7
+      213: 3967418731061993063
+    second: Jump_7
   - first:
-      213: -3858360630498910793
-    second: Attack Button_8
+      213: 3330681223243198311
+    second: Jump_8
   - first:
-      213: -5188046428047771285
-    second: Attack Button_9
+      213: -5679318689324892672
+    second: Jump_9
   - first:
-      213: -4421811155914275007
-    second: Attack Button_10
+      213: 8986021004954451436
+    second: Jump_10
   - first:
-      213: -4574788962965949657
-    second: Attack Button_11
+      213: -7810803537696417755
+    second: Jump_11
   - first:
-      213: 8952719200744871991
-    second: Attack Button_12
+      213: 7239986427860625178
+    second: Jump_12
   - first:
-      213: 5265378617087436125
-    second: Attack Button_13
+      213: -3499918286812187939
+    second: Jump_13
   - first:
-      213: 6190743998112693124
-    second: Attack Button_14
+      213: -141085772950971166
+    second: Jump_14
   - first:
-      213: 8543546541355797861
-    second: Attack Button_15
+      213: -3388347748468855017
+    second: Jump_15
   - first:
-      213: 121659729879574230
-    second: Attack Button_16
+      213: 8889825631758111734
+    second: Jump_16
   - first:
-      213: 5627993228297289380
-    second: Attack Button_17
+      213: -1196279927365578947
+    second: Jump_17
   - first:
-      213: 6357982528797745205
-    second: Attack Button_18
+      213: -5551465295274767572
+    second: Jump_18
   - first:
-      213: -3584890935080351836
-    second: Attack Button_19
+      213: 2107236255493629774
+    second: Jump_19
   - first:
-      213: 7010193533707982669
-    second: Attack Button_20
+      213: 2978651495272330991
+    second: Jump_20
   - first:
-      213: -4828280392303293405
-    second: Attack Button_21
+      213: -5089799229287275800
+    second: Jump_21
   - first:
-      213: -230267430039047498
-    second: Attack Button_22
+      213: 809149217655420146
+    second: Jump_22
+  - first:
+      213: 3749706016892065170
+    second: Jump_23
+  - first:
+      213: -4556174215301416573
+    second: Jump_24
+  - first:
+      213: 8037438018712698328
+    second: Jump_25
+  - first:
+      213: 3932511825258219018
+    second: Jump_26
+  - first:
+      213: 4432166594215786443
+    second: Jump_27
+  - first:
+      213: -7047773196209826438
+    second: Jump_28
+  - first:
+      213: -290791413259096957
+    second: Jump_29
+  - first:
+      213: -9065272056502611161
+    second: Jump_30
+  - first:
+      213: 6269443972071677028
+    second: Jump_31
+  - first:
+      213: 6660022228993050135
+    second: Jump_32
+  - first:
+      213: 4935618517889000731
+    second: Jump_33
+  - first:
+      213: 9031364819276824376
+    second: Jump_34
+  - first:
+      213: -5769841674287665907
+    second: Jump_35
+  - first:
+      213: 62489461259206351
+    second: Jump_36
+  - first:
+      213: 7975743697880590575
+    second: Jump_37
+  - first:
+      213: -598281298711592966
+    second: Jump_38
+  - first:
+      213: -1633270776974985467
+    second: Jump_39
+  - first:
+      213: -7366337381979054510
+    second: Jump_40
+  - first:
+      213: 7374490491736339792
+    second: Jump_41
+  - first:
+      213: -8383815656594867783
+    second: Jump_42
+  - first:
+      213: -9077618664680764594
+    second: Jump_43
+  - first:
+      213: 3802042649697943016
+    second: Jump_44
+  - first:
+      213: 7242095713913089146
+    second: Jump_45
+  - first:
+      213: 6392774858891224851
+    second: Jump_46
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,7 +175,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -112,7 +184,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -192,13 +264,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack Button_0
+      name: Jump_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 22
-        width: 1235
-        height: 1232
+        y: 0
+        width: 1254
+        height: 1254
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,8 +279,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4403c2ac61c344570800000000000000
-      internalID: 8449944869432733764
+      spriteID: f63fdb7b598678760800000000000000
+      internalID: 7460046300004610927
       vertices: []
       indices: 
       edges: []
@@ -217,7 +289,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b71161afdd0645f419aaaf0bb23ee909
+    spriteID: 901d14bc81453224bbb6bf1833d5fe28
     internalID: 0
     vertices: []
     indices: 
@@ -227,9 +299,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":1235.0,"y":1232.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":1254.0,"y":1254.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Attack Button_0: 8449944869432733764
+      Jump_0: 7460046300004610927
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

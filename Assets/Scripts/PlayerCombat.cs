@@ -25,8 +25,13 @@ public class PlayerCombat : MonoBehaviour
     {
         if (value.isPressed)
         {
-            animator.SetTrigger("Attack");
+            TryAttack();
         }
+    }
+
+    public void TryAttack()
+    {
+        animator.SetTrigger("Attack");
     }
 
     public void Attack()
