@@ -56,7 +56,7 @@ If you want to inspect or run the project locally:
 
 ## 📸 Screenshots
 
-![Level 3](images/Level3.png)
+![Level 3](Images/Level3.png)
 
 ---
 
